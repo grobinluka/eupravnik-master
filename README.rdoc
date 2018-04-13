@@ -28,6 +28,10 @@ Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
 
 
+rake db:drop db:create db:migrate
+
+
+
 git init
 git add .
 git commit -am "first commit"
