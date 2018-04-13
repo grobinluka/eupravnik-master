@@ -27,13 +27,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 ############################################
-gem 'bulma', '~> 0.1.0'
+gem 'bulma-rails', '~> 0.6.2'
 gem 'simple_form', '~> 4.0'
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'gravatar', '~> 1.0'
 gem 'rolify', '~> 5.2'
 gem 'cancancan', '~> 2.1', '>= 2.1.4'
 gem 'friendly_id', '~> 5.2', '>= 5.2.3'
+gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
 
 ############################################
 
@@ -59,6 +60,8 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  gem 'guard', '~> 2.14', '>= 2.14.2'
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
