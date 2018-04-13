@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     member { post :vote }
   end
   
+  resources :replies do
+    member { post :vote }
+  end
+  
+  
+  
   
   root 'discussions#index'
   

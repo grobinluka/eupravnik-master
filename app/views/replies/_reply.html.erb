@@ -10,25 +10,41 @@
         <p>
           <strong><%= reply.user.name %> <%= reply.user.lastname %></strong> <small><%= time_ago_in_words(reply.created_at) %></small>
           <br/>
+          <small><%= pluralize reply.reputation_for(:votes).to_i, "vote" %></small>
+          <br/>
           <%= markdown(reply.reply_post) %>
         </p>
       </div>
-      <% if reply_author(reply) #|| has_role?(:admin) %>
-      <nav class="level is-mobile">
-        <div class="level-left">
-          <a class="level-item">
-            <%= link_to edit_discussion_reply_path(reply.discussion, reply) do %>
-            <span class="icon is-small"><i class="fa fa-pencil"></i></span>
-            <% end %>
-          </a>
-          <a class="level-item">
-            <%= link_to [reply.discussion, reply],
-                method: :delete, data: {confirm: "Are you sure ?" } do %>
-            <span class="icon is-small"><i class="fa fa-trash-o"></i></span>
-            <% end %>
-          </a>
-        </div>
-      </nav>
+      <% if reply_author(reply) || current_user.admin == true %>
+        <nav class="level is-mobile">
+          <div class="level-left">
+            <a class="level-item">
+              <%= link_to edit_discussion_reply_path(reply.discussion, reply) do %>
+              <span class="icon is-small"><i class="fa fa-pencil"></i></span>
+              <% end %>
+            </a>
+            <a class="level-item">
+              <%= link_to [reply.discussion, reply], method: :delete, data: {confirm: "Are you sure ?" } do %>
+              <span class="icon is-small"><i class="fa fa-trash-o"></i></span>
+              <% end %>
+            </a>
+          </div>
+        </nav>
+        <% elsif !reply_author(reply) || current_user.admin == true %>
+        <nav class="level is-mobile">
+          <div class="level-left">
+            <a class="level-item">
+              <%= link_to vote_reply_path(reply, type: "up"), method: "post" do %> 
+                <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
+              <% end %>
+            </a>
+            <a class="level-item">
+              <%= link_to vote_reply_path(reply, type: "down"), method: "post" do %>
+                <span class="icon is-small flip_image"><i class="fa fa-thumbs-down"></i></span>
+              <% end %>
+            </a>
+          </div>
+        </nav>
       <% end %>
     </div>
   </article>
