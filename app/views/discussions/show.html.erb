@@ -13,12 +13,12 @@
         <%# end %>
       </div>
     </div>
-    <div class="content"><%= markdown(@discussion.content) %></div>
+    <div class="content wordbreaker"><%= markdown(@discussion.content) %></div>
 
     <h2 class="subtitle is-5 has-text-grey"><%= @discussion.replies.count %> Replies</h2>
 
     <div id="discussion-replies">
-      <%# render @discussion.replies %>
+      <%= render @discussion.replies %>
     </div>
 
     <hr />

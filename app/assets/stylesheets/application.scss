@@ -42,3 +42,19 @@ body{
 .discussion-title {
   margin-bottom: 0;
 }
+
+.wordbreaker{
+  word-wrap: break-word;
+}
+abbr{
+  text-decoration:none;
+}
+.has-border-gray{
+  border:1px solid #f8f8f8;
+}
+.error{
+  text-transform: capitalize;
+}
+.channel_input_width{
+  width:30%;
+}

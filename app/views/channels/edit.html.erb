@@ -1,6 +1,7 @@
-<h1>Editing Channel</h1>
+<h1 class="title is-3">Editing Channel</h1>
 
-<%= render 'form' %>
+<%= render 'form', channel: @channel %>
+<hr style="width:50%">
 
-<%= link_to 'Show', @channel %> |
-<%= link_to 'Back', channels_path %>
+<%= link_to 'Show', @channel, class:"button is-link is-outlined" %> 
+<%= link_to 'Back', channels_path, class:"button is-link is-outlined" %>
