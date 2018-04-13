@@ -13,4 +13,32 @@
  *= require_tree .
  *= require_self
  */
+ 
 @import "bulma";
+@import "functions";
+
+
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.image {
+  border-radius: 50%;
+  img {
+    border-radius: 50%;
+  }
+}
+
+.notification:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.textarea {
+  height: 250px;
+  font-size: .9rem;
+  padding: 1rem;
+}
+
+.discussion-title {
+  margin-bottom: 0;
+}

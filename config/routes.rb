@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :discussions
   devise_for :users
 
-  root 'home#index'
+  root 'discussions#index'
   
 end
