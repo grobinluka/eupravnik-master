@@ -35,4 +35,4 @@ rake db:drop db:create db:migrate
 git init
 git add .
 git commit -am "first commit"
-git push https://github.com/grobinluka/eupravnik-forum.git
+git push https://github.com/grobinluka/eupravnik-master.git

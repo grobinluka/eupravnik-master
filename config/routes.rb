@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
+  
+  
+  
   resources :channels
   resources :discussions do
     resources :replies
@@ -18,7 +22,6 @@ Rails.application.routes.draw do
   
   root 'discussions#index'
   
-  devise_for :users
   
   get 'home/profile', to: 'home#profile'
   get 'users/home/profile', to: 'home#profile'
