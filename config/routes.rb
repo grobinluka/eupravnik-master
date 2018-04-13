@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  resources :discussions
-  devise_for :users
-
+  
+  resources :channels
+  resources :discussions do
+    resources :reply
+  end
+  
+  
   root 'discussions#index'
+  
+  devise_for :users
   
 end

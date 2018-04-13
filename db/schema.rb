@@ -11,13 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413104454) do
+ActiveRecord::Schema.define(version: 20180413110421) do
+
+  create_table "channels", force: :cascade do |t|
+    t.string   "channel"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "discussion_id"
+  end
 
   create_table "discussions", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "channel_id"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.text     "reply_post"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
