@@ -30,10 +30,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bulma-rails', '~> 0.6.2'
 gem 'simple_form', '~> 4.0'
 gem 'devise', '~> 4.4', '>= 4.4.3'
-gem 'gravatar', '~> 1.0'
+gem 'gravatar_image_tag', '~> 1.2'
 gem 'rolify', '~> 5.2'
 gem 'cancancan', '~> 2.1', '>= 2.1.4'
 gem 'friendly_id', '~> 5.2', '>= 5.2.3'
+gem 'redcarpet', '~> 3.4'
+gem 'coderay', '~> 1.1', '>= 1.1.2'
 
 ############################################
 
