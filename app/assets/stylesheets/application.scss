@@ -61,3 +61,10 @@ abbr{
 .is-float-right{
   float:right;
 }
+.is-moved-alittle-to-left{
+  margin-right:5px;
+}
+.flip_image{
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}

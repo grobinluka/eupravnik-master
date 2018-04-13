@@ -5,4 +5,5 @@ class Reply < ActiveRecord::Base
     
     validates :reply_post, presence: true, length: { maximum: 1000 } # maximal 1000 chars.
     
+    has_reputation :votes, source: :user, aggregated_by: :sum 
 end

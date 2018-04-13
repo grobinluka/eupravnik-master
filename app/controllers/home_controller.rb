@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
   end
-  def home
+  
+  def profile
   end
 end

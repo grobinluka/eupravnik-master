@@ -3,9 +3,9 @@
   <h1 class="title is-2"><%= @channel.channel %></h1>
   </div>
   <div class="level-right">
-  <%# if has_role?(:admin) %>
+  <% if current_user.admin == true %>
     <%= link_to 'Edit Channel', edit_channel_path(@channel), class:"button" %>
-  <%# end %>
+  <% end %>
   </div>
 </div>
 <hr />

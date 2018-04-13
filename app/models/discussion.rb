@@ -7,4 +7,6 @@ class Discussion < ActiveRecord::Base
     validates :title, presence:true, length: { maximum: 50 } # maximal 50 chars.
     validates :content, presence: true, length: { maximum: 1000 } # maximal 1000 chars.
     
+    has_reputation :votes, source: :user, aggregated_by: :sum 
+    
 end

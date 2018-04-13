@@ -9,9 +9,9 @@
 
   <br/>
 
-  <!--< % if has_role?(:admin) %>-->
-  <%= link_to 'New Channel', new_channel_path, class:'button is-info' %>
-  <%= link_to 'Show Channels', channels_path, class:'button is-link is-outlined' %>
-  <!-- < % end %> -->
+  <% if current_user.admin == true %>
+    <%= link_to 'New Channel', new_channel_path, class:'button is-info' %>
+    <%= link_to 'Show Channels', channels_path, class:'button is-link is-outlined' %>
+  <% end %>
 
 </div>

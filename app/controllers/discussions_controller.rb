@@ -2,6 +2,10 @@ class DiscussionsController < ApplicationController
   before_action :set_discussion, only: [:show, :edit, :update, :destroy]
   before_action :find_channels, only: [:index, :show, :new, :edit]
   before_action :authenticate_user!
+  
+
+  
+
 
   # GET /discussions
   # GET /discussions.json
@@ -62,6 +66,14 @@ class DiscussionsController < ApplicationController
       format.html { redirect_to discussions_url, notice: 'Discussion was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @discussion = Discussion.find(params[:id])
+    @discussion.add_or_update_evaluation(:votes, value, current_user)
+    redirect_to :back, notice: "Thank you for voting"
   end
 
   private

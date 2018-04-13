@@ -46,9 +46,12 @@
                 </div>
               </div>
               <div class="navbar-item has-dropdown is-hoverable">
-                <div class="navbar-link"><%= current_user.name %> <%= current_user.lastname %></div>
+                <div class="navbar-link"><%= current_user.name %> <%= current_user.lastname %> (<%= current_user.reputation_for(:votes).to_i %>) </div>
                 <div class="navbar-dropdown is-right">
+                  <%= link_to "Profile", 'home/profile', class:"navbar-item" %>
                   <%= link_to 'Settings', edit_user_registration_path, class: "navbar-item" %>
+                  <hr class="navbar-divider">
+                  <%= link_to 'About Us', edit_user_registration_path, class: "navbar-item" %>
                   <hr class="navbar-divider">
                   <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"navbar-item" %>
                 </div>
