@@ -12,18 +12,26 @@
           <% end %>
           <div class="content">
             <%= truncate(strip_markdown(discussion.content), length: 140) %>
-            <p><em><small>Posted <%= time_ago_in_words(discussion.created_at) %> ago in
-              <% if discussion.channel %>
-                <%= link_to discussion.channel.channel, discussion.channel %>
-              <% end %>
-              by <%= discussion.user.name %> <%= discussion.user.lastname %>
-              </small>
+            <p>
+              <em>
+                <small>
+                  Posted <%= time_ago_in_words(discussion.created_at) %> ago in 
+                  <% if discussion.channel %> 
+                    <%= link_to discussion.channel.channel, discussion.channel %>
+                  <% end %>
+                  by <%= discussion.user.name %> <%= discussion.user.lastname %> - 
+                  <% if discussion.replies.count == 1 %>
+                    <%= discussion.replies.count %> Reply 
+                  <% else %>
+                    <%= discussion.replies.count %> Replies
+                  <% end %>
+                </small>
               </em>
             </p>
           </div>
         </div>
 
-        <% if discussion_author(discussion) || #has_role?(:admin) %>
+        <% if discussion_author(discussion) #|| has_role?(:admin) %>
         <div class="column has-text-right">
           <%= link_to 'Edit', edit_discussion_path(discussion), class:'button' %>
           <%= link_to 'Delete', discussion, method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %>
