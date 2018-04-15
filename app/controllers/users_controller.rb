@@ -7,8 +7,10 @@ class UsersController < ApplicationController
   end
   
   def index
-
     @users = User.all
   end
   
+  def image_params
+    params.require(:user).permit(:email, :name, :lastname, :admin, :image)
+  end
 end

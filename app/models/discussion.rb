@@ -1,4 +1,5 @@
 class Discussion < ActiveRecord::Base
+    mount_uploader :image, ImageUploader
     
     belongs_to :channel
     belongs_to :user

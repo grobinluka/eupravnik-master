@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415172614) do
+ActiveRecord::Schema.define(version: 20180415194541) do
 
   create_table "apartment_buildings", force: :cascade do |t|
     t.string   "name"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 20180415172614) do
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.integer  "channel_id"
+    t.string   "image"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "image"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "replies", force: :cascade do |t|
@@ -119,6 +128,7 @@ ActiveRecord::Schema.define(version: 20180415172614) do
     t.string   "provider"
     t.string   "uid"
     t.string   "image"
+    t.integer  "apartment_building_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

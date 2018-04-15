@@ -16,7 +16,7 @@
       <% @user.discussions.each do |discussion| %>
         <div class="columns bb-not-last pv10">
           <div class="column is-1">
-            <%= gravatar_image_tag(discussion.user.email, class:'border-radius-50', size: 48, alt: discussion.user.name) %>
+            <%= image_tag discussion.image.url, class:'border-radius-50', size: 48 %>
           </div>
           <div class="column is-8">
             <%= link_to discussion do %>
@@ -61,18 +61,33 @@
               </p>
             </div>
           </div>
-  
-          <% if discussion_author(discussion) || current_user.admin == true %>
-          <div class="column has-text-right">
-            <%= link_to 'Edit', edit_discussion_path(discussion), class:'button is-primary is-outlined' %>
-            <%= link_to 'Delete', discussion, method: :delete, data: { confirm: 'Are you sure?' }, class: "button is-danger is-outlined" %> <br/>
-          </div>
+          
+          <% if current_user.admin == true %>
+            <% if discussion_author(discussion) %>
+              <div class="column has-text-right">
+                <%= link_to 'Edit', edit_discussion_path(discussion), class:'button is-primary is-outlined' %>
+                <%= link_to 'Delete', discussion, method: :delete, data: { confirm: 'Are you sure?' }, class: "button is-danger is-outlined" %> <br/>
+              </div>
+            <% elsif !discussion_author(discussion) %>
+              <div class="column has-text-right">
+                <%= link_to 'Edit', edit_discussion_path(discussion), class:'button is-primary is-outlined' %>
+                <%= link_to 'Delete', discussion, method: :delete, data: { confirm: 'Are you sure?' }, class: "button is-danger is-outlined" %> <br/>
+              </div>
+            <% end %>
+          <% elsif !current_user.admin == true %>
+            <% if discussion_author(discussion) %>
+              <div class="column has-text-right">
+                <%= link_to 'Edit', edit_discussion_path(discussion), class:'button is-primary is-outlined' %>
+                <%= link_to 'Delete', discussion, method: :delete, data: { confirm: 'Are you sure?' }, class: "button is-danger is-outlined" %> <br/>
+              </div>
+            <% elsif !discussion_author(discussion) %>
+              <div class="column has-text-right">
+              </div>
+            <% end %>
           <% end %>
+
         </div>
       <% end %>
     </div>
   </div>
 </div>
-<p>
-  <%= image_tag @user.image.url %>
-</p>
