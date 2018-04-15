@@ -40,7 +40,7 @@ gem 'browser-timezone-rails'
 gem 'activerecord-reputation-system', '~> 3.0', '>= 3.0.1', require: 'reputation_system'
 gem 'omniauth-oauth2', '~> 1.5'
 gem 'omniauth-facebook', '~> 5.0'
-
+gem 'carrierwave', '~> 0.10.0'
 ############################################
 
 

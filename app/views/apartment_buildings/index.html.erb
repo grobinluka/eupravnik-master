@@ -1,29 +1,34 @@
-<p id="notice"><%= notice %></p>
+<h1 class="title is-4">Apartment Buildings</h1>
 
-<h1>Listing Apartment Buildings</h1>
+<div class="level">
+  <div class="level-left"></div>
+  <div class="level-right">
+    <%= link_to 'New Apartment Building', new_apartment_building_path, class:'button is-dark' %>
+  </div>
+</div>
 
-<table>
+<table class="table is-fullwidth">
   <thead>
     <tr>
       <th>Name</th>
       <th>Address</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @apartment_buildings.each do |apartment_building| %>
       <tr>
         <td><%= apartment_building.name %></td>
         <td><%= apartment_building.address %></td>
-        <td><%= link_to 'Show', apartment_building %></td>
-        <td><%= link_to 'Edit', edit_apartment_building_path(apartment_building) %></td>
-        <td><%= link_to 'Destroy', apartment_building, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <div class="buttons is-right">
+            <%= link_to 'View Building', apartment_building, class:'button' %>
+            <%= link_to 'Edit Building', edit_apartment_building_path(apartment_building), class:'button' %>
+            <%= link_to 'Delete', apartment_building, method: :delete, data: { confirm: 'Are you sure?' }, class:'button is-danger' %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
+
 </table>
-
-<br>
-
-<%= link_to 'New Apartment building', new_apartment_building_path %>

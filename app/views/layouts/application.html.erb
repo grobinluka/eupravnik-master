@@ -10,6 +10,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <!-- font-family: 'Source Sans Pro', sans-serif; -->
+    <link rel="shortcut icon" type="image/jpg" href="/favicon.jpg">
 
   </head>
 
@@ -49,9 +50,12 @@
                 <div class="navbar-link"><%= current_user.name %> <%= current_user.lastname %></div>
                 <div class="navbar-dropdown is-right">
                   <%= link_to "Profile", user_path(current_user), class:"navbar-item" %>
+                  <%= link_to "Settings", edit_user_registration_path, class:"navbar-item" %>
                   <% if current_user.admin == true %>
                     <hr class="navbar-divider">
-                    <%= link_to 'Administrator', edit_user_registration_path, class: "navbar-item" %>
+                    <%= link_to 'Show Buildings', apartment_buildings_path, class: "navbar-item" %>
+                    <%= link_to 'Show Users', users_path, class: "navbar-item" %>
+                    <%= link_to 'Show Channels', channels_path, class: "navbar-item" %>
                   <% end %>
                   <hr class="navbar-divider">
                   <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"navbar-item" %>

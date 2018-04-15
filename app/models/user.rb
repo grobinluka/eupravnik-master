@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
-         
+
          
          
   has_many :discussions, dependent: :destroy
@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   
   has_reputation :votes, source: {reputation: :votes, of: :discussions}, aggregated_by: :sum
   
-  
+  mount_uploader :image, ImageUploader
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -25,10 +25,4 @@ class User < ActiveRecord::Base
       # user.skip_confirmation!
     end
   end
-  
-  
-  
-  
-  
-  
 end

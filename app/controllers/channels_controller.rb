@@ -1,5 +1,6 @@
 class ChannelsController < ApplicationController
   before_action :set_channel, only: [:show, :edit, :update, :destroy]
+  before_action :must_be_admin, only: [:index]
 
   # GET /channels
   # GET /channels.json

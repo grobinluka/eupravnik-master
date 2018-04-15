@@ -17,4 +17,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
   
+  def must_be_admin
+    if current_user.admin == false || current_user.admin == NIL
+      redirect_to root_path, alert: "You don't have the rights to be there."
+    end
+  end
+  
 end
