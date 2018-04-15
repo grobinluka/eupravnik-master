@@ -36,6 +36,3 @@ git init
 git add .
 git commit -am "first commit"
 git push https://github.com/grobinluka/eupravnik-master.git
-
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
