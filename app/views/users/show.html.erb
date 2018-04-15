@@ -1,21 +1,20 @@
 <div class="columns">
   <div class="column is-6">
-    
-  </div>
-  <div class="column is-6">
-    
-  </div>
-</div>
-<div class="columns">
-  <div class="column is-6 box">
     <h3 class="title is-3"><%= @user.name %> <%= @user.lastname %></h3>
     <hr style="width:50%;">
     <p>Building name: </p>
     <p>Building address: </p>
     <p>No. of discussions: <%= @user.discussions.count %></p>
     <p>No. of votes on discussions: <%= @user.reputation_for(:votes).to_i %></p>
+    <% if current_user == @user && @user.lastname != NIL %>
+      <hr>
+      <p class="is-float-right"><%= link_to 'Edit profile', edit_user_registration_path %> | <%= link_to 'Change your avatar', edit_user_registration_path %></p>
+    <% else %>
+      <hr>
+      <p class="is-float-right"><%= link_to 'Change your avatar', edit_user_registration_path %></p>
+    <% end %>
   </div>
-  <div class="column is-6 box">
+  <div class="column is-6">
     <div class="discussions box">
       <% @user.discussions.each do |discussion| %>
         <div class="columns bb-not-last pv10">

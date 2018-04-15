@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :must_be_admin, only: [:edit, :destroy, :create]
+    before_action :must_be_admin, only: [:index]
   
   def show
     @user = User.find(params[:id])
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   
   def must_be_admin
     if current_user.admin == false || current_user.admin == NIL
-      redirect_to root_path, notice: "Admin Needed."
+      redirect_to root_path, alert: "You don't have the rights to be there."
     end
   end
 end

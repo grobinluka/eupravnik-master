@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
          
   has_many :discussions, dependent: :destroy
   has_many :channels, through: :discussions
+  belongs_to :apartment_buildings
   
   has_reputation :votes, source: {reputation: :votes, of: :discussions}, aggregated_by: :sum
   
