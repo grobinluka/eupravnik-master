@@ -1,4 +1,5 @@
 class Discussion < ActiveRecord::Base
+    after_initialize :set_defaults
     
     belongs_to :channel
     belongs_to :user
@@ -10,4 +11,7 @@ class Discussion < ActiveRecord::Base
     
     has_reputation :votes, source: :user, aggregated_by: :sum 
     
+    def set_defaults
+        self.channel = "General" if self.new_record?
+    end
 end

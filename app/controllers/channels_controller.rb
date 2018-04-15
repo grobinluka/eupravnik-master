@@ -59,7 +59,7 @@ class ChannelsController < ApplicationController
   def destroy
     @channel.destroy
     respond_to do |format|
-      format.html { redirect_to channels_url, notice: 'Channel was successfully destroyed.' }
+      format.html { redirect_to channels_url, notice: 'Channel was successfully deleted.' }
       format.json { head :no_content }
     end
   end

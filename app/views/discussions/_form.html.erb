@@ -19,15 +19,15 @@
     <label class="label">Channel</label>
     <div class="control has-icons-left">
       <span class="select">
-        <%= f.input_field :channel_id, required:true, collection:@channels.map { |c| [c.channel, c.id] }, prompt: "Select topic" %>
+        <%= f.input_field :channel_id, collection:@channels.map { |c| [c.channel, c.id] }, prompt: "Select topic" %>
       </span>
       <span class="icon is-small is-left">
         <i class="fa fa-tag"></i>
       </span>
     </div>
   </div>
-
-  <div class="field">
+  <hr>
+  <div class="field is-float-left">
     <div class="control">
       <%= f.button :submit, class:"button is-info" %>
     </div>

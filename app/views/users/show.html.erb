@@ -10,6 +10,8 @@
   <div class="column is-6 box">
     <h3 class="title is-3"><%= @user.name %> <%= @user.lastname %></h3>
     <hr style="width:50%;">
+    <p>Building name: </p>
+    <p>Building address: </p>
     <p>No. of discussions: <%= @user.discussions.count %></p>
     <p>No. of votes on discussions: <%= @user.reputation_for(:votes).to_i %></p>
   </div>

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   resources :apartment_buildings
-  resources :appartment_buildings
   get 'users/show'
 
   devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
@@ -27,10 +26,4 @@ Rails.application.routes.draw do
   root 'discussions#index'
   
   
-  get 'home/profile', to: 'home#profile'
-  get 'users/home/profile', to: 'home#profile'
-  get 'discussions/home/profile', to: 'home#profile'
-  get 'discussions/:id/replies/:id/home/profile', to: 'home#profile'
-  get 'channels/:id/home/profile', to: 'home#profile'
-  get 'channels/home/profile', to: 'home#profile'
 end

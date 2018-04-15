@@ -12,38 +12,49 @@
           <% end %>
           
           
-          
-          
-          
-          
-          
-          <% if discussion_author(discussion) || current_user.admin == true %>
-            <h6>
-              <small class="is-moved-alittle-to-left">
-                <%= pluralize discussion.reputation_for(:votes).to_i, "vote" %>
-              </small>
-            </h6>
-          <% elsif !discussion_author(discussion) || current_user.admin == true %>
-            <h6>
-              <small class="is-moved-alittle-to-left">
-                <%= pluralize discussion.reputation_for(:votes).to_i, "vote" %> | 
-                <%= link_to vote_discussion_path(discussion, type: "up"), method: "post" do %> 
-                  <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
-                <% end %> |
-                <%= link_to vote_discussion_path(discussion, type: "down"), method: "post" do %>
-                  <span class="icon is-small flip_image"><i class="fa fa-thumbs-down"></i></span>
-                <% end %>
-              </small>
-            </h6>
+          <% if current_user.admin == true %>
+            <% if discussion_author(discussion)%>
+              <h6>
+                <small class="is-moved-alittle-to-left">
+                  <%= pluralize discussion.reputation_for(:votes).to_i, "vote" %>
+                </small>
+              </h6>
+            <% elsif !discussion_author(discussion)%>
+              <h6>
+                <small class="is-moved-alittle-to-left">
+                  <%= pluralize discussion.reputation_for(:votes).to_i, "vote" %> | 
+                  <%= link_to vote_discussion_path(discussion, type: "up"), method: "post" do %> 
+                    <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
+                  <% end %> |
+                  <%= link_to vote_discussion_path(discussion, type: "down"), method: "post" do %>
+                    <span class="icon is-small flip_image"><i class="fa fa-thumbs-down"></i></span>
+                  <% end %>
+                </small>
+              </h6>
+            <% end %>
+          <% elsif !current_user.admin == true %>
+            <% if discussion_author(discussion)%>
+              <h6>
+                <small class="is-moved-alittle-to-left">
+                  <%= pluralize discussion.reputation_for(:votes).to_i, "vote" %>
+                </small>
+              </h6>
+            <% elsif !discussion_author(discussion)%>
+              <h6>
+                <small class="is-moved-alittle-to-left">
+                  <%= pluralize discussion.reputation_for(:votes).to_i, "vote" %> | 
+                  <%= link_to vote_discussion_path(discussion, type: "up"), method: "post" do %> 
+                    <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
+                  <% end %> |
+                  <%= link_to vote_discussion_path(discussion, type: "down"), method: "post" do %>
+                    <span class="icon is-small flip_image"><i class="fa fa-thumbs-down"></i></span>
+                  <% end %>
+                </small>
+              </h6>
+            <% end %>
           <% end %>
           
-          
-          
-          
-          
-          
-          
-          
+
           <div class="content">
             <%= truncate(strip_markdown(discussion.content), length: 140) %>
             <p>
