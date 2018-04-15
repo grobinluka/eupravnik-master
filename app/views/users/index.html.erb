@@ -1,0 +1,8 @@
+<h1 class="title is-5">List of all users</h3>
+<% @users.each do |user| %> 
+    <% if user.lastname != NIL %>
+        <%= link_to user.name, user %> <%= link_to user.lastname, user %> <br>
+    <% else %>
+        <%= link_to user.name, user %> <br>
+    <% end %>
+<% end %>

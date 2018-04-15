@@ -38,7 +38,8 @@ gem 'redcarpet', '~> 3.4'
 gem 'coderay', '~> 1.1', '>= 1.1.2'
 gem 'browser-timezone-rails'
 gem 'activerecord-reputation-system', '~> 3.0', '>= 3.0.1', require: 'reputation_system'
-gem 'omniauth-facebook'
+gem 'omniauth-oauth2', '~> 1.5'
+gem 'omniauth-facebook', '~> 5.0'
 
 ############################################
 

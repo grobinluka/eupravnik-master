@@ -218,7 +218,8 @@ DEPENDENCIES
   gravatar_image_tag (~> 1.2)
   jbuilder (~> 2.0)
   jquery-rails
-  omniauth-facebook
+  omniauth-facebook (~> 5.0)
+  omniauth-oauth2 (~> 1.5)
   rails (= 4.2.5)
   redcarpet (~> 3.4)
   rolify (~> 5.2)

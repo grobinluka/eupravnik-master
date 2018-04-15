@@ -10,6 +10,13 @@
           <%= link_to discussion do %>
             <h3 class="title is-5"><%= discussion.title %></h3>
           <% end %>
+          
+          
+          
+          
+          
+          
+          
           <% if discussion_author(discussion) || current_user.admin == true %>
             <h6>
               <small class="is-moved-alittle-to-left">
@@ -29,6 +36,14 @@
               </small>
             </h6>
           <% end %>
+          
+          
+          
+          
+          
+          
+          
+          
           <div class="content">
             <%= truncate(strip_markdown(discussion.content), length: 140) %>
             <p>
@@ -38,7 +53,7 @@
                   <% if discussion.channel %> 
                     <%= link_to discussion.channel.channel, discussion.channel %>
                   <% end %>
-                  by <%= discussion.user.name %> <%= discussion.user.lastname %> - 
+                  by <%= link_to discussion.user.name, user_path(discussion.user) %> <% if discussion.user.lastname != NIL %> <%= link_to discussion.user.lastname, user_path(discussion.user) %> <% end %>- 
                   <% if discussion.replies.count == 1 %>
                     <%= discussion.replies.count %> Reply 
                   <% else %>
@@ -49,7 +64,6 @@
             </p>
           </div>
         </div>
-
         <% if discussion_author(discussion) || current_user.admin == true %>
         <div class="column has-text-right">
           <%= link_to 'Edit', edit_discussion_path(discussion), class:'button is-primary is-outlined' %>

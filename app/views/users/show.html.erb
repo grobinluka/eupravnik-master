@@ -1,0 +1,77 @@
+<div class="columns">
+  <div class="column is-6">
+    
+  </div>
+  <div class="column is-6">
+    
+  </div>
+</div>
+<div class="columns">
+  <div class="column is-6 box">
+    <h3 class="title is-3"><%= @user.name %> <%= @user.lastname %></h3>
+    <hr style="width:50%;">
+    <p>No. of discussions: <%= @user.discussions.count %></p>
+    <p>No. of votes on discussions: <%= @user.reputation_for(:votes).to_i %></p>
+  </div>
+  <div class="column is-6 box">
+    <div class="discussions box">
+      <% @user.discussions.each do |discussion| %>
+        <div class="columns bb-not-last pv10">
+          <div class="column is-1">
+            <%= gravatar_image_tag(discussion.user.email, class:'border-radius-50', size: 48, alt: discussion.user.name) %>
+          </div>
+          <div class="column is-8">
+            <%= link_to discussion do %>
+              <h3 class="title is-5"><%= discussion.title %></h3>
+            <% end %>
+            <% if discussion_author(discussion) %>
+              <h6>
+                <small class="is-moved-alittle-to-left">
+                  <%= pluralize discussion.reputation_for(:votes).to_i, "vote" %>
+                </small>
+              </h6>
+            <% elsif !discussion_author(discussion) %>
+              <h6>
+                <small class="is-moved-alittle-to-left">
+                  <%= pluralize discussion.reputation_for(:votes).to_i, "vote" %> | 
+                  <%= link_to vote_discussion_path(discussion, type: "up"), method: "post" do %> 
+                    <span class="icon is-small"><i class="fa fa-thumbs-up"></i></span>
+                  <% end %> |
+                  <%= link_to vote_discussion_path(discussion, type: "down"), method: "post" do %>
+                    <span class="icon is-small flip_image"><i class="fa fa-thumbs-down"></i></span>
+                  <% end %>
+                </small>
+              </h6>
+            <% end %>
+            <div class="content">
+              <%= truncate(strip_markdown(discussion.content), length: 140) %>
+              <p>
+                <em>
+                  <small>
+                    Posted <%= time_ago_in_words(discussion.created_at) %> ago in 
+                    <% if discussion.channel %> 
+                      <%= link_to discussion.channel.channel, discussion.channel %>
+                    <% end %>
+                    by <%= discussion.user.name %> <%= discussion.user.lastname %> - 
+                    <% if discussion.replies.count == 1 %>
+                      <%= discussion.replies.count %> Reply 
+                    <% else %>
+                      <%= discussion.replies.count %> Replies
+                    <% end %>
+                  </small>
+                </em>
+              </p>
+            </div>
+          </div>
+  
+          <% if discussion_author(discussion) || current_user.admin == true %>
+          <div class="column has-text-right">
+            <%= link_to 'Edit', edit_discussion_path(discussion), class:'button is-primary is-outlined' %>
+            <%= link_to 'Delete', discussion, method: :delete, data: { confirm: 'Are you sure?' }, class: "button is-danger is-outlined" %> <br/>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

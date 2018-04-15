@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  
+
+  resources :apartment_buildings
+  resources :appartment_buildings
+  get 'users/show'
+
   devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
   
   
-  
+  resources :users
   resources :channels
   resources :discussions do
     resources :replies
