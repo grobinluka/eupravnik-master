@@ -236,6 +236,7 @@ To display how many votes discussion has
 
 ---------------------------------------------------------
 <b>HEROKU</b>
+
 To push on HEROKU, type in terminal
 ```
 heroku login
