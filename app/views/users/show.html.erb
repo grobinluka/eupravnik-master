@@ -4,8 +4,8 @@
     <hr style="width:50%;">
     <!--<p>Building name: </p>
     <p>Building address: </p>-->
-    <p>No. of discussions: <%= @user.discussions.count %></p>
-    <p>No. of votes on discussions: <%= @user.reputation_for(:votes).to_i %></p>
+    <p><strong>Email: </strong><%= @user.email %></p>
+    <p><strong>No. of discussions: </strong><%= @user.discussions.count %></p>
   </div>
   <div class="column is-7">
     <div class="discussions box">
