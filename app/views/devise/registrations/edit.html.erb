@@ -39,6 +39,13 @@
                 <%= f.input :current_password, hint: "We need your current password to confirm your changes.", required: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
               </div>
             </div>
+            
+            <div class="field">
+              <div class="control">
+                <%= f.select :current_password, hint: "We need your current password to confirm your changes.", required: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+              </div>
+            </div>
+            
             <br/>
             <%= f.button :submit, "Update", class:"button is-info is-float-right" %>
   

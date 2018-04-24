@@ -38,6 +38,8 @@ gem 'activerecord-reputation-system', '~> 3.0', '>= 3.0.1', require: 'reputation
 gem 'omniauth-oauth2', '~> 1.5'
 gem 'omniauth-facebook', '~> 5.0'
 gem 'carrierwave', '~> 0.10.0'
+
+gem 'table_print', '~> 1.5', '>= 1.5.6', require: 'table_print'
 ############################################
 
 

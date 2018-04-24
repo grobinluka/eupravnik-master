@@ -10,6 +10,7 @@ class ApartmentBuildingsController < ApplicationController
   # GET /apartment_buildings/1
   # GET /apartment_buildings/1.json
   def show
+    @apartment_building = ApartmentBuilding.find(params[:id])
   end
 
   # GET /apartment_buildings/new

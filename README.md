@@ -1,3 +1,5 @@
+<b>CREATE NEW PROJECT</b>
+
 Created new Rails project named evidence, with
 ```
 rails new eupravnik-workspace
@@ -51,16 +53,19 @@ Then we run bundle install
 bundle install
 ```
 ---------------------------------------------------------
+<b>GENERATING USERS</b>
 
 Generated Users
 ```
 rails g devise:install
 rails g devise user
 ```
+
 Cause it created a table in database we need to migrate the database
 ```
 rake db:migrate
 ```
+
 Created devise views
 ```
 rails g devise:views
@@ -80,7 +85,7 @@ Implementing Facebook.
 https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
 
 ---------------------------------------------------------
-
+<b>CREATING SCAFFOLDS</b>
 
 Created 2 more scaffolds "replies" where all the replies on discussion will be projected and "channels" where discussions will be shown basec on channel/topic
 ```
@@ -98,6 +103,8 @@ rails g migration addUserIdToReplies user_id:integer
 ```
 
 ---------------------------------------------------------
+<b>DISPLAYING DISCUSSIONS</b>
+
 To display all the discussions I firstly defined discussions in controller
 ```
 def show
@@ -146,7 +153,7 @@ To display them on discussions show page
 
 ---------------------------------------------------------
 
-Created User Profile which would display user info and all discussions he posted
+<b>Created User Profile which would display user info and all discussions he posted</b>
 
 First we created a controller for users with action show
 ```
@@ -187,7 +194,8 @@ To discussions we added image upload with carrierwave gem. To do that follow thi
 https://code.tutsplus.com/tutorials/rails-image-upload-using-carrierwave-in-a-rails-app--cms-25183
 
 ---------------------------------------------------------
-To create votes I used activerecord-reputation-system gem.
+<b>To create votes I used activerecord-reputation-system gem.</b>
+
 In console you generate
 ```
 rails g reputation_system
@@ -225,6 +233,28 @@ To display how many votes discussion has
 ```
 <%= pluralize discussion.reputation_for(:votes).to_i, "vote" %>
 ```
+
+---------------------------------------------------------
+<b>HEROKU</b>
+To push on HEROKU, type in terminal
+```
+heroku login
+(your credentials of heroku)
+
+heroku create
+```
+
+Push your files on git, and then
+```
+git push heroku (your branch name)
+```
+
+To change database information use heroku console
+```
+heroku run rails c
+```
+
+---------------------------------------------------------
 
 For everything to look great I used bulma-rails gem better looks and dynamics of the page
 https://bulma.io/documentation/

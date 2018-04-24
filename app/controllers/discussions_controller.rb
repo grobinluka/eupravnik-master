@@ -17,6 +17,7 @@ class DiscussionsController < ApplicationController
   # GET /discussions/1.json
   def show
     @discussions = Discussion.all.order('created_at desc')
+    # @building_name = User.find
   end
 
   # GET /discussions/new

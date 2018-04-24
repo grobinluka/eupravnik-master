@@ -8,23 +8,33 @@
       <th>Email</th>
       <th>Created at</th>
       <th>Provider</th>
+      <th>Apt. Building</th>
+      <th>Apt. B. Address</th>
       <th colspan="2"></th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
+    <% apar = ApartmentBuilding.find_by(id: user.apartment_building_id) %>
     <tr>
-        <td><%= link_to user.name, user %></td>
-        <td>
-            <% if user.lastname != NIL %>
-                <%= link_to user.lastname, user %>
-            <% else %>
-                #NULL#
-            <% end %>
-        </td>
-        <td><%= user.email %></td>
+      <td><%= link_to user.name, user %></td>
+      <td>
+          <% if user.lastname != NIL %>
+              <%= link_to user.lastname, user %>
+          <% else %>
+              #NULL#
+          <% end %>
+      </td>
+      <td><%= user.email %></td>
       <td><%= user.created_at.strftime("%d/%m/%Y") %></td>
       <td><%= user.provider %></td>
+      <% if apar.present? %>
+        <td><%= apar.name %></td>
+        <td><%= apar.address %></td>
+      <% else %>
+        <td>No details</td>
+        <td>No details</td>
+      <% end %>
       <td>
         <div class="buttons is-right">
           <%= link_to 'View User', user, class:'button' %>
