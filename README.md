@@ -236,10 +236,7 @@ To display how many votes discussion has
 
 ---------------------------------------------------------
 <b>HEROKU</b>
-<<<<<<< HEAD
-=======
 
->>>>>>> 9768c44a79bdd3eda08305c1171553fa4da17b16
 To push on HEROKU, type in terminal
 ```
 heroku login
