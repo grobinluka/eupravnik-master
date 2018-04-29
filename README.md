@@ -235,6 +235,21 @@ To display how many votes discussion has
 ```
 
 ---------------------------------------------------------
+<b>OUTPUT BASED ON BUILDING</b>
+
+Change this line in discussion controller def index
+```
+@discussions = Discussion.all.order('created_at desc')
+```
+
+To this
+```
+@discussions = Discussion.joins(:user).where('users.apartment_building_id' => current_user.apartment_building_id).order('created_at desc')
+```
+
+
+---------------------------------------------------------
+
 <b>HEROKU</b>
 
 To push on HEROKU, type in terminal

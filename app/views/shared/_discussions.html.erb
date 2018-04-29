@@ -1,5 +1,6 @@
 <div class="column is-8">
-  <h3 class="title is-4 has-text-grey-light">Latest Discussions <%= @building_name %></h3>
+  <% apar = ApartmentBuilding.find_by(id: current_user.apartment_building_id) %>
+  <h3 class="title is-4 has-text-grey-light">Latest Discussions of <%= apar.name %></h3>
   <div class="discussions">
     <% @discussions.each do |discussion| %>
       <div class="columns bb-not-last pv10">
