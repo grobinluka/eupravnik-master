@@ -10,14 +10,13 @@ class DiscussionsController < ApplicationController
   # GET /discussions
   # GET /discussions.json
   def index
-    @discussions = Discussion.all.order('created_at desc')
+    @discussions = Discussion.joins(:user).joins(:user).where('users.apartment_building_id' => current_user.apartment_building_id).order('created_at desc')
   end
 
   # GET /discussions/1
   # GET /discussions/1.json
   def show
     @discussions = Discussion.all.order('created_at desc')
-    # @building_name = User.find
   end
 
   # GET /discussions/new
