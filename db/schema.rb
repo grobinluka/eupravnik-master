@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415193953) do
+ActiveRecord::Schema.define(version: 20180429192148) do
 
   create_table "apartment_buildings", force: :cascade do |t|
     t.string   "name"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20180415193953) do
     t.string   "uid"
     t.string   "image"
     t.integer  "apartment_building_id"
+    t.boolean  "superadmin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
