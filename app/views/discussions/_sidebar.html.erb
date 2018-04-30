@@ -9,8 +9,10 @@
 
   <br/>
 
-  <% if current_user.admin == true %>
+  <% if current_user.superadmin == true %>
     <%= link_to 'New Channel', new_channel_path, class:'button is-info' %>
+    <%= link_to 'Show Channels', channels_path, class:'button is-link is-outlined' %>
+  <% elsif current_user.admin == true %>
     <%= link_to 'Show Channels', channels_path, class:'button is-link is-outlined' %>
   <% end %>
 

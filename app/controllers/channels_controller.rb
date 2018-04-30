@@ -1,11 +1,11 @@
 class ChannelsController < ApplicationController
   before_action :set_channel, only: [:show, :edit, :update, :destroy]
-  before_action :must_be_admin, only: [:index]
+  before_action :must_be_superadmin, only: [:edit]
 
   # GET /channels
   # GET /channels.json
   def index
-    @channels = Channel.all
+    @channels = Channel.all.order("created_at ASC")
     @discussions = Discussion.all.order("created_at DESC")
   end
 
@@ -13,7 +13,7 @@ class ChannelsController < ApplicationController
   # GET /channels/1.json
   def show
     @discussions = Discussion.where('channel_id = ?', @channel.id)
-    @channels = Channel.all.order("created_at DESC")
+    @channels = Channel.all.order("created_at ASC")
   end
 
   # GET /channels/new

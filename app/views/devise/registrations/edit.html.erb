@@ -20,24 +20,30 @@
               <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
             <% end %>
             </div>
-  
-            <div class="field">
-              <div class="control">
-              <%= f.input :password, autocomplete: "off", hint: "Leave it blank if you don't want to change it.", required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+            <% if current_user.uid == NIL %>
+              <div class="field">
+                <div class="control">
+                <%= f.input :password, autocomplete: "off", hint: "Leave it blank if you don't want to change it.", required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" }, value: "" %>
+                </div>
               </div>
-            </div>
+              
+              <div class="field">
+                <div class="control">
+                <%= f.input :password_confirmation, required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+                </div>
+              </div>
+            <% end %>
             
+            <% if current_user.apartment_building_id == NIL %>
+            <hr style="width:50%;">
             <div class="field">
               <div class="control">
-              <%= f.input :password_confirmation, required: false, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+                <div class="select">
+                  <%= f.select :apartment_building_id, ApartmentBuilding.all.map { |b| [b.name, b.id] }, include_blank: true  %>
+                </div>
               </div>
             </div>
-  
-            <div class="field">
-              <div class="control">
-                <%= f.input :current_password, hint: "We need your current password to confirm your changes.", required: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
-              </div>
-            </div>
+            <% end %>
             
             <br/>
             <%= f.button :submit, "Update", class:"button is-info is-float-right" %>
@@ -54,3 +60,9 @@
     </div>
   </section>
 <% end %>
+<script>
+  window.onclick = function myClickHandler(event){
+    this.onclick=null;
+    document.getElementById("user_password").value = "";
+  }
+</script>
