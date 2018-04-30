@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.all
+    @users = User.where('apartment_building_id = ?', current_user.apartment_building_id)
+    @users_sa = User.all.order('name ASC')
   end
   
   def image_params

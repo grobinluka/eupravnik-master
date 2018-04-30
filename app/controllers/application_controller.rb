@@ -12,13 +12,18 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    added_attrs = [:name, :lastname, :email, :password, :password_confirmation, :remember_me]
-    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
-    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+    devise_parameter_sanitizer.permit :sign_up, keys: [:name, :lastname, :email, :password, :password_confirmation, :remember_me]
+    devise_parameter_sanitizer.permit :account_update, keys: [:email, :password, :password_confirmation, :apartment_building_id]
   end
   
   def must_be_admin
     if current_user.admin == false || current_user.admin == NIL
+      redirect_to root_path, alert: "You don't have the rights to be there."
+    end
+  end
+  
+  def must_be_superadmin
+    if current_user.superadmin == false || current_user.superadmin == NIL
       redirect_to root_path, alert: "You don't have the rights to be there."
     end
   end
