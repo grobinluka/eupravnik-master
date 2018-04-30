@@ -1,21 +1,24 @@
 <div class="box">
   <article class="media">
-    <div class="media-left">
-      <figure class="image is-48x48">
-        <%= gravatar_image_tag(reply.user.email, class: 'border-radius-50', size: 48, alt: reply.user.name) %>
-      </figure>
-    </div>
     <div class="media-content">
       <div class="content">
         <p>
-          <strong><%= reply.user.name %> <%= reply.user.lastname %></strong> <small><%= time_ago_in_words(reply.created_at) %></small>
+          <% user_this = User.find_by(id: reply.user.id) %>
+          <% if reply.user.lastname != NIL %>
+            <% name = reply.user.name + " " + reply.user.lastname %>
+          <% else %>
+            <% name = reply.user.name %>
+          <% end %>
+          <strong>
+            <%= link_to name, user_path(user_this) %> 
+          </strong> - <small><%= time_ago_in_words(reply.created_at) %></small>
           <br/>
           <small><%= pluralize reply.reputation_for(:votes).to_i, "vote" %></small>
           <br/>
           <%= markdown(reply.reply_post) %>
         </p>
       </div>
-      <% if reply_author(reply) || current_user.admin == true %>
+      <% if reply_author(reply)%>
         <nav class="level is-mobile">
           <div class="level-left">
             <a class="level-item">
@@ -30,7 +33,7 @@
             </a>
           </div>
         </nav>
-        <% elsif !reply_author(reply) || current_user.admin == true %>
+        <% elsif !reply_author(reply)%>
         <nav class="level is-mobile">
           <div class="level-left">
             <a class="level-item">
@@ -43,6 +46,18 @@
                 <span class="icon is-small flip_image"><i class="fa fa-thumbs-down"></i></span>
               <% end %>
             </a>
+            <% if current_user.admin == true || current_user.superadmin == true %>
+              <a class="level-item">
+              <%= link_to edit_discussion_reply_path(reply.discussion, reply) do %>
+              <span class="icon is-small"><i class="fa fa-pencil"></i></span>
+              <% end %>
+            </a>
+            <a class="level-item">
+              <%= link_to [reply.discussion, reply], method: :delete, data: {confirm: "Are you sure ?" } do %>
+              <span class="icon is-small"><i class="fa fa-trash-o"></i></span>
+              <% end %>
+            </a>
+            <% end %>
           </div>
         </nav>
       <% end %>
