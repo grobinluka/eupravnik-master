@@ -43,7 +43,9 @@
             <% if user_signed_in? %>
               <div class="navbar-item">
                 <div class="field is-grouped">
-                  <%= link_to 'New Discussion', new_discussion_path, class:"button is-info" %>
+                  <% if current_user.apartment_building_id != NIL %>
+                    <%= link_to 'New Discussion', new_discussion_path, class:"button is-info" %>
+                  <% end %>
                 </div>
               </div>
               <div class="navbar-item has-dropdown is-hoverable">
